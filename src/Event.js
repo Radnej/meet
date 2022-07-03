@@ -1,47 +1,37 @@
-// import React, { Component } from "react";
-
-// class Event extends Component {
-//   render() {
-//     return <div></div>;
-//   }
-// }
-// export default Event;
-
 import React, { Component } from "react";
-import { mockData } from "./mock-data";
 
 class Event extends Component {
-  state = {
-    collapsed: true,
-  };
+  constructor() {
+    super();
 
-  handleClick = () => {
-    this.state.collapsed
-      ? this.setState({ collapsed: false })
-      : this.setState({ collapsed: true });
-  };
+    this.state = {
+      showDetails: false,
+    };
+  }
 
-  showSummary = () => {
-    if (this.state.collapsed === false) {
-      return mockData[0].description;
-    }
+  handleDetailClick = () => {
+    this.setState({
+      showDetails: !this.state.showDetails,
+    });
   };
 
   render() {
     const { event } = this.props;
     return (
       <div className="event">
-        <h3 className="title">{event.summary}</h3>
-        <p className="start-time">
-          {event.start.dateTime} {event.start.timeZone}
-        </p>
+        <h1 className="title">{event.title}</h1>
+        <h2 className="summary">{event.summary}</h2>
+        <p className="start-time">{event.start.dateTime}</p>
         <p className="location">{event.location}</p>
-        <button className="btn-details" onClick={this.handleClick}>
-          show details
+        {this.state.showDetails && (
+          <p className="description">{event.description}</p>
+        )}
+        <button className="button" onClick={this.handleDetailClick}>
+          Show Details
         </button>
-        <div className="event-details">{this.showSummary()}</div>
       </div>
     );
   }
 }
+
 export default Event;

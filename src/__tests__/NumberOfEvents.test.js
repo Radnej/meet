@@ -2,42 +2,37 @@ import React from "react";
 import { shallow } from "enzyme";
 import NumberOfEvents from "../NumberOfEvents";
 
-describe("<NumberOfEvents /> component", () => {
+describe("<NumberOfEvents/> component", () => {
   let NumberOfEventsWrapper;
   beforeAll(() => {
     NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
 
-  test("render textbox", () => {
-    expect(NumberOfEventsWrapper.find("#events-number")).toHaveLength(1);
+  test("render text input", () => {
+    expect(NumberOfEventsWrapper.find(".number")).toHaveLength(1);
   });
 
-  test("display number 32 by default", () => {
-    expect(
-      NumberOfEventsWrapper.find("#events-number").get(0).props.value
-    ).toEqual(32);
+  test("render text input correctly", () => {
+    const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
+    expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(
+      numberOfEvents
+    );
   });
 
-  test("user can change the number of events", () => {
-    NumberOfEventsWrapper.find("#events-number").simulate("change", {
-      target: { value: 10 },
+  test("number of events by default is 15", () => {
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(15);
+  });
+
+  test("render 15 events by default", () => {
+    expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(15);
+  });
+
+  test("change state when input changes", () => {
+    NumberOfEventsWrapper.setState({
+      numberOfEvents: "15",
     });
-    expect(NumberOfEventsWrapper.state("numberOfEvents")).toEqual(10);
-  });
-
-  test("only allow number above 1 of events > 0", () => {
-    NumberOfEventsWrapper.setState({ numberOfEvents: 32 });
-    NumberOfEventsWrapper.find("#events-number").simulate("change", {
-      target: { value: -1 },
-    });
-    expect(NumberOfEventsWrapper.state("numberOfEvents")).toEqual(32);
-  });
-
-  test("only allow number", () => {
-    NumberOfEventsWrapper.setState({ numberOfEvents: 32 });
-    NumberOfEventsWrapper.find("#events-number").simulate("change", {
-      target: { value: "string" },
-    });
-    expect(NumberOfEventsWrapper.state("numberOfEvents")).toEqual(32);
+    const eventObject = { target: { value: "5" } };
+    NumberOfEventsWrapper.find(".number").simulate("change", eventObject);
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe("5");
   });
 });
