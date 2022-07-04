@@ -21,4 +21,8 @@ describe("<NumberOfEvents/> component", () => {
   test("number of events by default is 15", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(15);
   });
+
+  test("render 15 events by default", () => {
+    expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(15);
+  });
 });
