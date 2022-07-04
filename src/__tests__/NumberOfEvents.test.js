@@ -10,4 +10,15 @@ describe("<NumberOfEvents/> component", () => {
   test("render text input", () => {
     expect(NumberOfEventsWrapper.find(".number")).toHaveLength(1);
   });
+
+  test("render text input correctly", () => {
+    const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
+    expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(
+      numberOfEvents
+    );
+  });
+
+  test("number of events by default is 15", () => {
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(15);
+  });
 });
