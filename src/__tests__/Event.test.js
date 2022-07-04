@@ -24,4 +24,9 @@ describe("<Event /> component", () => {
   test("render event location", () => {
     expect(EventWrapper.find(".location")).toHaveLength(1);
   });
+
+  test("details shown by click", () => {
+    EventWrapper.find(".button").simulate("click");
+    expect(EventWrapper.find(".description")).toHaveLength(1);
+  });
 });
