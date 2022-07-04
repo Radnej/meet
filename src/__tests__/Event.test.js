@@ -29,4 +29,7 @@ describe("<Event /> component", () => {
     EventWrapper.find(".button").simulate("click");
     expect(EventWrapper.find(".description")).toHaveLength(1);
   });
+  test("render show details button", () => {
+    expect(EventWrapper.find(".button")).toHaveLength(1);
+  });
 });
