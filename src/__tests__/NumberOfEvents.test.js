@@ -26,7 +26,7 @@ describe("<NumberOfEvents/> component", () => {
     expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(15);
   });
 
-  test("change state when input changes", () => {
+  test("change state numberOfEvents when input changes", () => {
     NumberOfEventsWrapper.setState({
       numberOfEvents: "15",
     });
