@@ -25,6 +25,10 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".location")).toHaveLength(1);
   });
 
+  test("on render details are hidden", () => {
+    expect(EventWrapper.find(".description")).toHaveLength(0);
+  });
+
   test("details shown by click", () => {
     EventWrapper.find(".button").simulate("click");
     expect(EventWrapper.find(".description")).toHaveLength(1);
