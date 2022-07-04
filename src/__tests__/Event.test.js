@@ -18,4 +18,7 @@ describe("<Event /> component", () => {
   test("render event title", () => {
     expect(EventWrapper.find(".title")).toHaveLength(1);
   });
+  test("render event start time", () => {
+    expect(EventWrapper.find(".start-time")).toHaveLength(1);
+  });
 });

@@ -7,6 +7,7 @@ class Event extends Component {
       <div className="event">
         <h2 className="summary">{event.summary}</h2>
         <h1 className="title">{event.title}</h1>
+        <p className="start-time">{event.start.dateTime}</p>
       </div>
     );
   }
