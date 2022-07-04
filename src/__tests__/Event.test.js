@@ -12,4 +12,7 @@ describe("<Event /> component", () => {
   test("render number of events correctly", () => {
     expect(EventWrapper.find(".event")).toHaveLength(1);
   });
+  test("render event summary", () => {
+    expect(EventWrapper.find(".summary")).toHaveLength(1);
+  });
 });
