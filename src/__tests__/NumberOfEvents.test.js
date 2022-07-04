@@ -22,7 +22,7 @@ describe("<NumberOfEvents/> component", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(15);
   });
 
-  test("render 15 events by default", () => {
+  test("display number 15 by default", () => {
     expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(15);
   });
 
