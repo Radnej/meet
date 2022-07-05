@@ -42,6 +42,7 @@ describe("<Event /> component", () => {
       showDetails: true,
     });
     EventWrapper.find(".button").simulate("click");
-    expect(EventWrapper.find("showDetails")).toHaveLength(0);
+    expect(EventWrapper.state("showDetails")).toBe(false);
+    expect(EventWrapper.find(".description")).toHaveLength(0);
   });
 });
