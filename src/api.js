@@ -1,3 +1,4 @@
+import axios from "axios";
 import { mockData } from "./mock-data";
 
 export const getEvents = async () => {
