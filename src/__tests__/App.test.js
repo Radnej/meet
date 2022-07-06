@@ -23,3 +23,7 @@ describe("<App/> component", () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
 });
+
+//The Full Rendering API
+
+describe("<App /> integration", () => {});
