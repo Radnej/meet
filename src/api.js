@@ -9,3 +9,4 @@ export const extractLocations = (events) => {
   var locations = [...new Set(extractLocations)];
   return locations;
 };
+export const getAccessToken = async () => {};
