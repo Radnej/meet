@@ -2,16 +2,13 @@ import { mockData } from "./mock-data";
 import axios from "axios";
 import NProgress from "nprogress";
 
-// export const getEvents = async () => {
-//   return mockData;
-// };
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
@@ -60,6 +57,12 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];
+  }
+
   const token = await getAccessToken();
 
   if (token) {
@@ -90,7 +93,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(
-        "https://23z6suzb0i.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
+        "https://k3v5s6v3g6.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
