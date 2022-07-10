@@ -28,6 +28,8 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <h1 className="title">Meet App</h1>
+        <p className="searchcity">Choose nearest city</p>
         <input
           type="text"
           className="city"
@@ -37,6 +39,7 @@ class CitySearch extends Component {
             this.setState({ showSuggestions: true });
           }}
         />
+
         <ul
           className="suggestions"
           style={this.state.showSuggestions ? {} : { display: "none" }}
@@ -49,6 +52,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
+
           <li onClick={() => this.handleItemClicked("all")}>
             <b className="all">See all cities</b>
           </li>

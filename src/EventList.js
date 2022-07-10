@@ -12,6 +12,7 @@ class EventList extends Component {
             <Event event={event} />
           </li>
         ))}
+        <p className="NumberOfEvents">Number of Events</p>
       </ul>
     );
   }
