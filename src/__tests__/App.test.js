@@ -74,10 +74,4 @@ describe("<App /> integration", () => {
   });
 
   //specify number of events
-
-  test("load a list of 15 events by default", async () => {
-    const AppWrapper = mount(<App />);
-    expect(AppWrapper.state("numberOfEvents")).toBe("15");
-    AppWrapper.unmount();
-  });
 });

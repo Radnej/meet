@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 
 class NumberOfEvents extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numberOfEvents: 15,
-    };
-  }
+  state = {
+    numberOfEvents: 15,
+  };
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({ numberOfEvents: value });
