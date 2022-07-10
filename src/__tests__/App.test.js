@@ -74,11 +74,29 @@ describe("<App /> integration", () => {
   });
 
   //specify number of events
-  test("changing events input will changes display", () => {
+  test("change events input change display", () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 1 } };
     AppWrapper.find(".event-input").simulate("change", eventObject);
     expect(AppWrapper.find(".event-input").prop("value")).toBe(1);
+    AppWrapper.unmount();
+  });
+
+  test("change NumberOfEvents state when number input changes", () => {
+    const AppWrapper = mount(<App />);
+    const eventObject = { target: { value: 5 } };
+    AppWrapper.find(".event-input").simulate("change", eventObject);
+    const numberOfEvents =
+      AppWrapper.find(NumberOfEvents).state("numberOfEvents");
+    expect(numberOfEvents).toBe(5);
+    AppWrapper.unmount();
+  });
+
+  test("change Events when number input changes", () => {
+    const AppWrapper = mount(<App />);
+    const eventObject = { target: { value: 1 } };
+    AppWrapper.find(".event-input").simulate("change", eventObject);
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
     AppWrapper.unmount();
   });
 });
