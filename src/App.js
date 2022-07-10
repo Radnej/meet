@@ -25,13 +25,7 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, eventCount) => {
-    if (!eventCount) {
-      eventCount = this.state.numberOfEvents;
-    } else {
-      eventCount = parseInt(eventCount);
-      this.setState({ numberOfEvents: eventCount });
-    }
+  updateEvents = (location) => {
     if (!location) {
       location = "all";
     }
@@ -42,7 +36,7 @@ class App extends Component {
           ? events
           : events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents.slice(0, eventCount),
+        events: locationEvents,
       });
     });
   };
@@ -55,7 +49,7 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />{" "}
         <EventList events={this.state.events} />
-        <NumberOfEvents updateEvents={this.updateEvents} />
+        <NumberOfEvents />
       </div>
     );
   }
