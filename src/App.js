@@ -1,3 +1,4 @@
+import "./nprogress.css";
 import React, { Component } from "react";
 import "./App.css";
 import EventList from "./EventList";
@@ -26,16 +27,10 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
-    if (!eventCount) {
-      eventCount = this.state.numberOfEvents;
-    } else {
-      eventCount = parseInt(eventCount);
-      this.setState({ numberOfEvents: eventCount });
-    }
-    if (!location) {
-      location = "all";
-    }
-
+    if (!location) location = "all";
+    !eventCount
+      ? (eventCount = this.state.numberOfEvents)
+      : this.setState({ numberOfEvents: eventCount });
     getEvents().then((events) => {
       const locationEvents =
         location === "all"

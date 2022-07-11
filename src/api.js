@@ -75,8 +75,10 @@ const removeQuery = () => {
 
 export const getEvents = async () => {
   NProgress.start();
+  console.log("nprogress");
 
   if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
     return mockData;
   }
 

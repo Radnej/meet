@@ -6,6 +6,7 @@ import CitySearch from "../CitySearch";
 import NumberOfEvents from "../NumberOfEvents";
 import { mockData } from "../mock-data";
 import { extractLocations, getEvents } from "../api";
+import Event from "../Event";
 
 describe("<App/> component", () => {
   let AppWrapper;
@@ -86,17 +87,19 @@ describe("<App /> integration", () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 5 } };
     AppWrapper.find(".number").simulate("change", eventObject);
-    const numberOfEvents =
-      AppWrapper.find(NumberOfEvents).state("numberOfEvents");
+    const numberOfEvents = AppWrapper.find(NumberOfEvents).state(
+      "numberOfEvents"
+    );
     expect(numberOfEvents).toBe(5);
     AppWrapper.unmount();
   });
 
-  test("change Events when number input changes", () => {
+  test("change Events when number input changes", async () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 1 } };
-    AppWrapper.find(".number").simulate("change", eventObject);
-    expect(AppWrapper.find(EventList)).toHaveLength(1);
+    await AppWrapper.find(".number").simulate("change", eventObject);
+    // expect(AppWrapper.find(Event)).toHaveLength(0);
+    expect(AppWrapper.find(".number").prop("value")).toBe(1);
     AppWrapper.unmount();
   });
 });
