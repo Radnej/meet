@@ -98,8 +98,7 @@ describe("<App /> integration", () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 1 } };
     await AppWrapper.find(".number").simulate("change", eventObject);
-    // expect(AppWrapper.find(Event)).toHaveLength(0);
-    expect(AppWrapper.find(".number").prop("value")).toBe(1);
+    expect(AppWrapper.find(Event)).toHaveLength(1);
     AppWrapper.unmount();
   });
 });

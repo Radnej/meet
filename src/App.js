@@ -1,9 +1,10 @@
 import "./nprogress.css";
-import React, { Component } from "react";
 import "./App.css";
+import React, { Component } from "react";
 import EventList from "./EventList";
-import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
+import CitySearch from "./CitySearch";
+
 import { getEvents, extractLocations } from "./api";
 
 class App extends Component {
@@ -46,11 +47,11 @@ class App extends Component {
     return (
       <div className="App">
         <CitySearch
-          locations={this.state.locations}
           updateEvents={this.updateEvents}
+          locations={this.state.locations}
         />{" "}
-        <EventList events={this.state.events} />
         <NumberOfEvents updateEvents={this.updateEvents} />
+        <EventList events={this.state.events} />
       </div>
     );
   }

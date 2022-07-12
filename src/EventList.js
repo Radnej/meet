@@ -4,6 +4,7 @@ import Event from "./Event";
 
 class EventList extends Component {
   render() {
+    <p className="NumberOfEvents">Number of Events</p>;
     const { events } = this.props;
     return (
       <ul className="EventList">
@@ -12,7 +13,6 @@ class EventList extends Component {
             <Event event={event} />
           </li>
         ))}
-        <p className="NumberOfEvents">Number of Events</p>
       </ul>
     );
   }
