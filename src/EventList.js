@@ -4,7 +4,6 @@ import Event from "./Event";
 
 class EventList extends Component {
   render() {
-    <p className="NumberOfEvents">Number of Events</p>;
     const { events } = this.props;
     return (
       <ul className="EventList">
