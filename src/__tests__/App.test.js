@@ -97,7 +97,6 @@ describe("<App /> integration", () => {
   test("change Events when number input changes", async () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 1 } };
-    AppWrapper.update();
     await AppWrapper.find(".number").simulate("change", eventObject);
     expect(AppWrapper.find(Event)).toHaveLength(1);
     AppWrapper.unmount();
