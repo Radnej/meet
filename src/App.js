@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
+    currentLocation: "all",
     numberOfEvents: 15,
   };
 
@@ -28,7 +29,9 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
-    if (!location) location = "all";
+    !location
+      ? (location = this.state.currentLocation)
+      : this.setState({ currentLocation: location });
     !eventCount
       ? (eventCount = this.state.numberOfEvents)
       : this.setState({ numberOfEvents: eventCount });
