@@ -5,7 +5,8 @@ Given: The user hasn’t specified the number of events
 When: The user begins their search
 Then: 15 events are listed
 
+
 Scenario: User can change the number of events they want to see
-Given: The user has specified the number of events
-When: The user has chosen how many events to see
-Then: The number of displayed events matches the number chosen by user
+    Given : The user hasn't specified the number of events
+    When : The user has chosen how many events to see
+    Then : The number of displayed events matches the number chosen by user
