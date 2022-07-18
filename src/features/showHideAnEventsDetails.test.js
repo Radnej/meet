@@ -9,18 +9,18 @@ const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 defineFeature(feature, (test) => {
   let AppWrapper;
 
-  test("An event element is collapsed by default.", ({ given, when, then }) => {
-    given("The user is viewing the list of events", () => {
+  test("An event element is collapsed by default", ({ given, when, then }) => {
+    given("the user is viewing the list of events", () => {
       AppWrapper = mount(<App />);
     });
 
-    when("The user hasn’t clicked on event element", () => {
+    when("the user hasn’t clicked on event element", () => {
       AppWrapper.update();
       expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
     });
 
-    then("The event details are collapsed", () => {
-      expect(AppWrapper.find(".event.description")).toHaveLength(0);
+    then("the event details are collapsed", () => {
+      expect(AppWrapper.find(".event .description")).toHaveLength(0);
     });
   });
 
@@ -29,38 +29,44 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("The user is viewing the list of events", async () => {
+    given("the user is viewing the list of events", async () => {
       AppWrapper = await mount(<App />);
     });
 
-    when("The user has clicked on event element", () => {
+    when("the user has clicked on event element", () => {
       AppWrapper.update();
       AppWrapper.find(".event .button").at(0).simulate("click");
     });
 
-    then("The event details are expanded", () => {
-      expect(AppWrapper.find(".event .event.description")).toHaveLength(1);
+    then("event details are expanded", () => {
+      expect(AppWrapper.find(".event .description")).toHaveLength(1);
     });
   });
 
   test("User can collapse an event to hide its details", ({
     given,
+    and,
     when,
     then,
   }) => {
-    given("The user no longer wants to see the events details", async () => {
-      AppWrapper = await mount(<App />);
+    let AppWrapper;
+
+    given("user no longer wants to see the events details", () => {
+      AppWrapper = mount(<App />);
+    });
+
+    and("the list of suggested cities is showing", () => {
       AppWrapper.update();
       AppWrapper.find(".event .button").at(0).simulate("click");
-      expect(AppWrapper.find(".event .event.description")).toHaveLength(1);
+      expect(AppWrapper.find(".event .description")).toHaveLength(1);
     });
 
-    when("The user clicks on the details", () => {
+    when("the user clicks on the details", () => {
       AppWrapper.find(".event .button").at(0).simulate("click");
     });
 
-    then("The event details can be collapsed", () => {
-      expect(AppWrapper.find(".event .event.description")).toHaveLength(0);
+    then("the event details can be collapsed", () => {
+      expect(AppWrapper.find(".event .description")).toHaveLength(0);
     });
   });
 });
