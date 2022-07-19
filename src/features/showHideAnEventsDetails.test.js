@@ -7,13 +7,13 @@ import { mockData } from "../mock-data";
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 
 defineFeature(feature, (test) => {
+  let EventWrapper;
   test("An event element is collapsed by default", ({ given, when, then }) => {
-    let EventWrapper;
     given("the user is viewing the list of events", () => {
-      EventWrapper = shallow(<Event event={mockData[8]} />);
+      EventWrapper = shallow(<Event event={mockData[1]} />);
     });
 
-    when("the user hasn’t clicked on event element", () => {});
+    when("the user has not clicked on event element", () => {});
 
     then("the event details are collapsed", () => {
       expect(EventWrapper.find(".event .description")).toHaveLength(0);
@@ -25,19 +25,17 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    let EventWrapper;
-    given("the user is viewing the list of events", () => {
-      EventWrapper = shallow(<Event event={mockData[8]} />);
+    given("the user is viewing the list of events", async () => {
+      EventWrapper = shallow(<Event event={mockData[1]} />);
     });
 
     when("the user has clicked on event element", () => {
-      EventWrapper.find(".event .button").simulate("click");
+      EventWrapper.update();
+      EventWrapper.find(".event .button").at(0).simulate("click");
     });
 
     then("event details are expanded", () => {
-      expect(EventWrapper.find(".event .description").text()).toBe(
-        mockData[1].description
-      );
+      expect(EventWrapper.find(".event .description")).toHaveLength(1);
     });
   });
 

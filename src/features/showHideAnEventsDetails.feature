@@ -2,7 +2,7 @@ Feature: show/hide an event's details
 
     Scenario: An event element is collapsed by default
         Given the user is viewing the list of events
-        When the user hasn’t clicked on event element
+        When the user has not clicked on event element
         Then the event details are collapsed
 
     Scenario: User can expand an event to see its details
