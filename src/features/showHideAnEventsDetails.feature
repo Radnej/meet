@@ -11,8 +11,7 @@ Feature: show/hide an event's details
         Then event details are expanded
 
     Scenario: User can collapse an event to hide its details
-        Given user no longer wants to see the events details
-        And the list of suggested cities is showing
-        When the user clicks on the details
+        Given the user did not collapse an event element
+        When the user click again on the show details button
         Then the event details can be collapsed
       

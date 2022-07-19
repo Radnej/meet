@@ -9,7 +9,7 @@ const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 defineFeature(feature, (test) => {
   let AppWrapper;
 
-  test("When user hasn’t specified a number, 15 is the default number", ({
+  test("When user hasn’t specified a number, 8 is the default number", ({
     given,
     when,
     then,
@@ -22,9 +22,9 @@ defineFeature(feature, (test) => {
       AppWrapper.update();
     });
 
-    then("15 events are listed", () => {
+    then("8 events are listed", () => {
       AppWrapper.update();
-      expect(AppWrapper.find(".event").length).toBeLessThanOrEqual(15);
+      expect(AppWrapper.find(".event").length).toBe(8);
     });
   });
 
@@ -40,16 +40,17 @@ defineFeature(feature, (test) => {
     });
 
     when("the user has chosen how many events to see", () => {
-      const numberOfEvents = { target: { value: 1 } };
-      AppWrapper.find(".numberOfEvents").simulate("change", numberOfEvents);
+      AppWrapper.find(".numberOfEvents").simulate("change", {
+        target: { value: 3 },
+      });
     });
 
     then(
       "the number of displayed events matches the number chosen by user",
       () => {
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-        NumberOfEventsWrapper.setState({ numberOfEvents: 5 });
-        expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(5);
+        NumberOfEventsWrapper.setState({ numberOfEvents: 3 });
+        expect(NumberOfEventsWrapper.state("numberOfEvents")).toEqual(3);
       }
     );
   });

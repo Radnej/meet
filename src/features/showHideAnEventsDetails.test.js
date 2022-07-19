@@ -1,26 +1,22 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
 import React from "react";
-import { mount } from "enzyme";
-import App from "../App";
+import { shallow } from "enzyme";
+import Event from "../Event";
 import { mockData } from "../mock-data";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 
 defineFeature(feature, (test) => {
-  let AppWrapper;
-
   test("An event element is collapsed by default", ({ given, when, then }) => {
+    let EventWrapper;
     given("the user is viewing the list of events", () => {
-      AppWrapper = mount(<App />);
+      EventWrapper = shallow(<Event event={mockData[8]} />);
     });
 
-    when("the user hasn’t clicked on event element", () => {
-      AppWrapper.update();
-      expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
-    });
+    when("the user hasn’t clicked on event element", () => {});
 
     then("the event details are collapsed", () => {
-      expect(AppWrapper.find(".event .description")).toHaveLength(0);
+      expect(EventWrapper.find(".event .description")).toHaveLength(0);
     });
   });
 
@@ -29,44 +25,37 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("the user is viewing the list of events", async () => {
-      AppWrapper = await mount(<App />);
+    let EventWrapper;
+    given("the user is viewing the list of events", () => {
+      EventWrapper = shallow(<Event event={mockData[8]} />);
     });
 
     when("the user has clicked on event element", () => {
-      AppWrapper.update();
-      AppWrapper.find(".event .button").at(0).simulate("click");
+      EventWrapper.find(".event .button").simulate("click");
     });
 
     then("event details are expanded", () => {
-      expect(AppWrapper.find(".event .description")).toHaveLength(1);
+      expect(EventWrapper.find(".event .description").text()).toBe(
+        mockData[1].description
+      );
     });
   });
 
   test("User can collapse an event to hide its details", ({
     given,
-    and,
     when,
     then,
   }) => {
-    let AppWrapper;
-
-    given("user no longer wants to see the events details", () => {
-      AppWrapper = mount(<App />);
+    let EventWrapper;
+    given("the user did not collapse an event element", () => {
+      EventWrapper = shallow(<Event event={mockData[1]} />);
     });
 
-    and("the list of suggested cities is showing", () => {
-      AppWrapper.update();
-      AppWrapper.find(".event .button").at(0).simulate("click");
-      expect(AppWrapper.find(".event .description")).toHaveLength(1);
+    when("the user click again on the show details button", () => {
+      EventWrapper.find(".event .button").simulate("click");
     });
-
-    when("the user clicks on the details", () => {
-      AppWrapper.find(".event .button").at(0).simulate("click");
-    });
-
     then("the event details can be collapsed", () => {
-      expect(AppWrapper.find(".event .description")).toHaveLength(0);
+      expect(EventWrapper.find(".event .description")).toHaveLength(1);
     });
   });
 });
