@@ -47,13 +47,15 @@ defineFeature(feature, (test) => {
     let EventWrapper;
     given("the user did not collapse an event element", () => {
       EventWrapper = shallow(<Event event={mockData[1]} />);
+      EventWrapper.setState({ showDetails: true });
     });
 
     when("the user click again on the show details button", () => {
       EventWrapper.find(".event .button").simulate("click");
     });
     then("the event details can be collapsed", () => {
-      expect(EventWrapper.find(".event .description")).toHaveLength(1);
+      expect(EventWrapper.state("showDetails")).toBe(false);
+      expect(EventWrapper.find(".event .description")).toHaveLength(0);
     });
   });
 });
