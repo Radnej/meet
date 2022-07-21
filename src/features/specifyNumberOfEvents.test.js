@@ -48,7 +48,7 @@ defineFeature(feature, (test) => {
       "the number of displayed events matches the number chosen by user",
       () => {
         AppWrapper.update();
-        expect(AppWrapper.find("Event")).toHaveLength(3);
+        expect(AppWrapper.find(".event")).toHaveLength(3);
       }
     );
   });
