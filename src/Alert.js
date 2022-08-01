@@ -36,4 +36,4 @@ class ErrorAlert extends Alert {
     this.color = "red";
   }
 }
-export { InfoAlert };
+export { InfoAlert, ErrorAlert };
