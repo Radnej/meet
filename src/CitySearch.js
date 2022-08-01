@@ -7,16 +7,6 @@ class CitySearch extends Component {
     suggestions: [],
     showSuggestions: undefined,
   };
-  //   handleInputChanged = (event) => {
-  //     const value = event.target.value;
-  //     const suggestions = this.props.locations.filter((location) => {
-  //       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-  //     });
-  //     this.setState({
-  //       query: value,
-  //       suggestions,
-  //     });
-  //   };
 
   handleInputChanged = (event) => {
     const value = event.target.value;
