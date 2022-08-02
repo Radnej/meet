@@ -8,7 +8,7 @@ class NumberOfEvents extends Component {
 
   handleInputChanged = (event) => {
     let inputValue = event.target.value;
-    if (inputValue >= 15 || inputValue <= 0) {
+    if (inputValue > 15 || inputValue <= 0) {
       this.setState({
         numberOfEvents: inputValue,
         infoText: "Please enter a number between 1 - 15",
