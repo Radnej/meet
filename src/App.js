@@ -6,6 +6,7 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import WelcomeScreen from "./WelcomeScreen";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
+import { OfflineAlert } from "./Alert";
 
 class App extends Component {
   state = {
@@ -14,10 +15,18 @@ class App extends Component {
     currentLocation: "all",
     numberOfEvents: 15,
     showWelcomeScreen: undefined,
+    isOnline: navigator.onLine,
   };
 
   async componentDidMount() {
     this.mounted = true;
+    window.addEventListener("offline", (e) => {
+      this.setState({ isOnline: false });
+    });
+    window.addEventListener("online", (e) => {
+      this.setState({ isOnline: true });
+    });
+
     const accessToken = localStorage.getItem("access_token");
     const isTokenValid =
       !window.location.href.startsWith("http://localhost") &&
@@ -31,7 +40,13 @@ class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
+          this.setState({
+            events,
+            locations: extractLocations(events).slice(
+              0,
+              this.state.numberOfEvents
+            ),
+          });
         }
       });
     }
@@ -76,6 +91,16 @@ class App extends Component {
     } else {
       return (
         <div className="App">
+          <div className="offline_alert_container">
+            {!this.state.isOnline && (
+              <OfflineAlert
+                style={{ top: 0 }}
+                text={
+                  "You are offline. An updated list will be loaded when you are back online."
+                }
+              />
+            )}
+          </div>
           <CitySearch
             updateEvents={this.updateEvents}
             locations={this.state.locations}
