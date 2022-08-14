@@ -2,7 +2,7 @@ import React from "react";
 import "./WelcomeScreen.css";
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ? (
-    <div className="WelcomeScreen">
+    <div className="WelcomeScreen" align="center">
       <h1>Welcome to the Meet app</h1>
       <h4>
         Log in to see upcoming events around the world for full-stack developers
