@@ -60,24 +60,31 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined)
+    const { showWelcomeScreen } = this.state;
+
+    if (showWelcomeScreen === undefined) {
       return <div className="App" />;
-    return (
-      <div className="App">
-        <CitySearch
-          updateEvents={this.updateEvents}
-          locations={this.state.locations}
-        />{" "}
-        <NumberOfEvents updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
+    } else if (showWelcomeScreen === true) {
+      return (
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken();
           }}
         />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="App">
+          <CitySearch
+            updateEvents={this.updateEvents}
+            locations={this.state.locations}
+          />{" "}
+          <NumberOfEvents updateEvents={this.updateEvents} />
+          <EventList events={this.state.events} />
+        </div>
+      );
+    }
   }
 }
 
