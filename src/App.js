@@ -16,22 +16,15 @@ class App extends Component {
     showWelcomeScreen: undefined,
   };
 
-  // componentDidMount() {
-  //   this.mounted = true;
-  //   getEvents().then((events) => {
-  //     if (this.mounted) {
-  //       this.setState({
-  //         events: events.slice(0, 15),
-  //         locations: extractLocations(events),
-  //       });
-  //     }
-  //   });
-  // }
-
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem("access_token");
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const isTokenValid =
+      !window.location.href.startsWith("http://localhost") &&
+      !(accessToken && !navigator.onLine) &&
+      (await checkToken(accessToken)).error
+        ? false
+        : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
@@ -67,9 +60,8 @@ class App extends Component {
   };
 
   render() {
-    const { showWelcomeScreen } = this.state;
-
-    if (!showWelcomeScreen) return <div className="App" />;
+    if (this.state.showWelcomeScreen === undefined)
+      return <div className="App" />;
     return (
       <div className="App">
         <CitySearch
