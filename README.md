@@ -82,7 +82,7 @@ As a user I should be able to see a chart view of upcoming events by dates and t
   - When: The user opens the app or does a search for events
   - Then: A chart of upcoming events is displayed
   
-## Built With
+## Technologies Used
 
 - Javascript
 - React
