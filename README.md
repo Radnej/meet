@@ -1,8 +1,26 @@
 ## Meet-App
+## Project description
 
-This application is built so users can find events in their locations. It will be using React, and will be built using TDD.
+The goal of this project is to build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events.
+
+## Demo
 
 ![Meet app](https://user-images.githubusercontent.com/91905344/203155794-9dbb1345-34e1-4905-8920-b66c8f78d329.gif)
+
+Live version: [Meet App](https://radnej.github.io/meet/)
+
+### Features
+
+#### Feature 1: Filter events by city
+
+As a user, I should be able to see all upcoming events from all cities
+
+- Scenario: When user hasn't searched for a city, show upcoming events from all cities
+
+- Given user hasn't searched for any city
+- When the user opens the app
+- Then the user should see a list of upcoming events from all locations
+
 
 ## Feature 2: Show/Hide Event's Details
 
@@ -63,3 +81,45 @@ As a user I should be able to see a chart view of upcoming events by dates and t
   - Given: The user wants to see upcoming events
   - When: The user opens the app or does a search for events
   - Then: A chart of upcoming events is displayed
+  
+## Built With
+
+- Javascript
+- React
+
+## Dependencies
+
+- Axios (library for asynchronous calls to the Google Calendar API)
+- nprogress
+- React
+- React-DOM
+- React-Router-DOM
+- Recharts (library for data visualisation)
+- Cucumber (acceptance testing)
+- Jest (unit and integration testing)
+- Puppeteer (end-to-end testing)
+- AWS Lambda (cloud provider)
+
+
+
+## Tool Used
+- VS Code
+
+## To Run Locally
+
+1. Clone or download repository first and open it with you favourite editor.
+```bash
+git clone https://github.com/Radnej/meet
+```
+2. Connect to your github pages Follow the instructions provided by 
+```bash
+github: https://pages.github.com
+```
+3. Chnage a homepage address in package.json to fit to your github account
+4. Run app on localhost:
+```bash
+npm run start
+```
+
+
+
