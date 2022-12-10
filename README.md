@@ -111,15 +111,18 @@ As a user I should be able to see a chart view of upcoming events by dates and t
 ```bash
 git clone https://github.com/Radnej/meet
 ```
-2. Connect to your github pages Follow the instructions provided by 
+2. 2. To install the depedencies run
 ```bash
-github: https://pages.github.com
+$ npm install
 ```
-3. Chnage a homepage address in package.json to fit to your github account
-4. Run app on localhost:
+3. To run the app locally run
 ```bash
-npm run start
-```
+ npm run start 
+ ```
+4. [optional] To run tests
+```bash
+ npm run test
+ ```
 
 
 
