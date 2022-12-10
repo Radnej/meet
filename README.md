@@ -111,7 +111,7 @@ As a user I should be able to see a chart view of upcoming events by dates and t
 ```bash
 git clone https://github.com/Radnej/meet
 ```
-2. 2. To install the depedencies run
+2. To install the depedencies run
 ```bash
 $ npm install
 ```
