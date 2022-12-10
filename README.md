@@ -113,7 +113,7 @@ git clone https://github.com/Radnej/meet
 ```
 2. To install the depedencies run
 ```bash
-$ npm install
+ npm install
 ```
 3. To run the app locally run
 ```bash
